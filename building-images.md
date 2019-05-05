@@ -60,7 +60,7 @@ flask
 
 In order to package our sample application into a Docker image, we need to write a `Dockerfile`.
 
-Dockerfile is a text file containing all the instructions that the Docker engine needs to know in order to prepare the application environment:
+Dockerfile is a text file containing all instructions that the Docker engine needs to know in order to prepare the application environment:
 
 * a base Docker image to run from,
 * copying application code,
@@ -76,7 +76,7 @@ Here is the format of a Dockerfile:
 DIRECTIVE arguments
 ```
 
-Docker runs the directives in order. A Dockerfile **must** start with a `FROM` directive, which specifies a base image from which a new image should be built.
+Docker runs the directives in order. A Dockerfile **must** start with a `FROM` directive, which specifies a base image from which a new image should be built (e.g. `ubuntu`).
 
 Here are the most common directives that can be used in a Dockerfile:
 
@@ -93,7 +93,7 @@ Here are the most common directives that can be used in a Dockerfile:
 
 * `WORKDIR <path>`
 
-  Sets the working directory for any RUN, CMD, ENTRYPOINT, COPY and ADD instructions that follow it in the Dockerfile.
+  Sets the working directory for any `RUN`, `CMD`, `ENTRYPOINT`, `COPY` and `ADD` instructions that follow it in the Dockerfile.
 
   Examples:
 
@@ -102,11 +102,11 @@ Here are the most common directives that can be used in a Dockerfile:
   RUN pwd
   ```
 
-  The output of the final `pwd` command in the aboveexample would be `/my/custom/path`
+  The output of the final `pwd` command in the above example would be `/my/custom/path`
 
 * `COPY <src>... <dest>`
 
-  Copies new files or directories `<src>` and adds them to the filesystem of the image at the path `<dest>`.
+  Copies new files or directories from `<src>` and adds them to the filesystem of the image at the path `<dest>`.
 
   Examples:
 
@@ -247,8 +247,12 @@ Now, we can see two instances of `sample_app` image. One is tagged with `v1.0`. 
 
 ## Exercises
 
-1. Modify the sample application to print something different than `Hello World!`.
+1. Run a container from the built image and publish the application port. Access the application in a browser. The page should display caption `Hello World!`.
 
-2. Rebuild the application image and tag it with label `v1.1`.
+2. Modify the sample application to print something different than `Hello World!`.
 
-3. Mark version `v1.1` of the image as `latest`.
+3. Rebuild the application image and tag it with label `v1.1`.
+
+4. Mark version `v1.1` of the image as `latest`.
+
+5. Run another container from the newer version of the image and access the application in a browser.

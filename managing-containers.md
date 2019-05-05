@@ -4,6 +4,7 @@
 
 In this chapter you will learn:
 
+* What is a container.
 * How to run a container from an image.
 * How to check containers running in your system.
 * How to execute a command in a running container.
@@ -11,6 +12,15 @@ In this chapter you will learn:
 * How to restart, stop and remove containers.
 
 ## Walkthrough
+
+Container is an isolated **PROCESS** in user space sharing OS kernel with other containers (processes). Container management tools such as Docker leverage existing OS mechanisms such as *namespaces* and *cgroups* to **limit what a given process can see** and **how much resources a given process can use**. Moreover, they use *chroot* to replace the root filesystem of the process with the content of a container image.
+
+These mechanisms enable emulation of distinct OS environment for a process and limit the impact of that process on other processes to the bare minimum.
+
+![](/assets/containers-vs-vms.png)
+
+There is no hypervisor involved. There is no separate instance of an operating system - guest OS. Consequently, **containers take up much less space than VMs** (container images are typically tens of MBs in size, VMs take GBs in size) and **start in miliseconds** (in opposition to VMs which require several minutes to boot guest OS and start the application).
+
 
 ### Task 1: Running containers
 
@@ -42,7 +52,7 @@ drwxr-xr-x    5 root     root          4096 Apr  8 20:30 lib
 
 **Analyze the command output.**
 
-Docker first pulls a missing `alpine` image from a registry using tag `latest`. Then, it creates a container from that image, and executes `ls -l` command inside of the container. Note the result of runnig `ls` command in above output:
+Docker first pulls a missing `alpine` image from a registry using tag `latest`. Then, it creates a container from that image, and executes `ls -l` command inside the container. Note the result of runnig `ls` command in above output:
 
 ```bash
 total 56
@@ -229,7 +239,7 @@ CMD ["redis-server"]
 
 It starts Redis daemon in the foreground since this is what most users would do with the image - start the Redis service.
 
-Let's run a Redis container without specifying a command:
+Then, let's run a Redis container without specifying a command:
 
 ```bash
 $ docker run redis
@@ -249,7 +259,7 @@ Docker executes the default command, which starts the Redis server and then star
 
 This may not be the most effective way to start containers with long-running processes such as Redis or Nginx servers, because they block the current user session. We would have to every-time run a new terminal session to start a new container.
 
-Stop the Redis container blocking our current session by hitting `ctrl` + `^c`:
+Stop the Redis container by hitting `ctrl` + `^c`:
 
 ```bash
 ^C1:signal-handler (1557003118) Received SIGINT scheduling shutdown...
@@ -310,7 +320,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 
 Until now, we have been able to execute commands in a container by providing them as an argument to the `docker run` command or by launching an interactive session.
 
-How to execute the command when the container has already been started?
+How to execute the command if the container has already been started?
 
 To run a command in a running container, we can use the `docker exec` command. It has the following syntax:
 
@@ -347,7 +357,7 @@ $ exit
 
 At some point, we may want to stop some of the containers to temporarily release the system resources (memory, processor) and start other containers, while retaining the ability to restart the stopped ones.
 
-`docker stop` command enables to stop a container process. The memory and processor resources are then released, while the container data is still persisted on the disk. Later, it is possible to restart the stopped container process using `docker start` command. It starts the container process with a default command or a command initialily specified in `docker run` command.
+`docker stop` command enables to stop a container process. The memory and processor resources are then released, while the container data is still persisted on the disk. Later, it is possible to restart the stopped container process using `docker start` command. It starts the container process with a default command or a command specified initialily in `docker run`.
 
 List all running containers:
 

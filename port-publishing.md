@@ -9,9 +9,11 @@ In this chapter you will learn:
 
 ## Walkthrough
 
+By default containers do not publish any ports to the outside world. Ports are opened only for internal container-to-container communication in a Docker network. In order to access container ports from the outside of the container, ports must be published explicitly via `docker run` command.
+
 ### Task 1: Why do we need publish container ports
 
-By default containers do not publish any ports to the outside world. Ports are opened only for internal container-to-container communication in a Docker network. In order to access container ports from the outside of the container, ports must be published explicitly via `docker run` command. The objective of this task is to ilustrate the problem.
+The objective of this task is to ilustrate the problem of publishing ports in containers.
 
 Let's run a container with Nginx:
 
@@ -94,14 +96,14 @@ This time the communication succeed. You may also try to access Nginx via the we
 
 ## Exercises
 
-1. Run a `Redis` container with port `6379` exposed by the container mapped to port `6000` on the Docker host.
-2. Install `redis-cli` on the host to access the Redis service from *the outside*:
+1. Run a `Redis` container with port `6379` exposed to the *outside* - map host port `6000` to container port `6379`.
+2. Install `redis-cli` on the Docker host to access the Redis service from *the outside*:
 
   ```bash
   $ sudo apt-get install redis-tools
   ```
 
-3. Connect to containerized Redis instance from the Docker host:
+3. Connect to containerized Redis instance from the Docker host and try to set several keys:
 
   ```bash
   $ redis-cli -h localhost -p 6000
