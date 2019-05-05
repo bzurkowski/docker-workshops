@@ -99,8 +99,14 @@ Try to run a Docker command without `sudo`:
 $ docker run --rm hello-world
 ```
 
+Current user is lacking permissions. Add current user to `docker` group:
 
-<!-- Note that we must prepend each Docker command with `sudo`
+```bash
+sudo usermod -aG docker $USER
+```
 
+Try to run a Docker command without `sudo`:
 
-The docker group is created but no users are added to it. You need to use sudo to run Docker commands. Continue to Linux postinstall to allow non-privileged users to run Docker commands and for other optional configuration steps. -->
+```bash
+$ docker run --rm hello-world
+```
