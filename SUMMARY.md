@@ -1,6 +1,5 @@
 # Summary
 
-* [Introduction](README.md)
 * [Docker installation](installation.md)
 * [Managing images](managing-images.md)
 * [Managing containers](managing-containers.md)

@@ -4,8 +4,8 @@
 
 In this chapter you will learn:
 
- * Why do we need to publish container ports.
- * How to publish container ports.
+* Why do we need to publish container ports.
+* How to publish container ports.
 
 ## Walkthrough
 
