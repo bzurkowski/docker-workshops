@@ -21,6 +21,8 @@ It is type of a **filesystem** that has a **layered structure**. Each increment 
 
 When a container is started, the filesystem stored in the image is mounted to the root directory of the container process.
 
+![](/assets/image-multi-containers.png)
+
 Layers of the original image are always read-only. New containers create a thin writable layer (*container layer*) on top of the image layers and use *Copy on Write* technique to add/modify image files.
 
 ### Task 1: Listing images
