@@ -10,6 +10,7 @@ In this chapter you will learn:
 
 In this chapter you will learn:
 
+* What is a Docker image.
 * How to list Docker images downloaded into your system.
 * How to search for a specific image in a registry.
 * How to download an image from a registry into your system.
@@ -19,6 +20,7 @@ In this chapter you will learn:
 
 In this chapter you will learn:
 
+* What is a container.
 * How to run a container from an image.
 * How to check containers running in your system.
 * How to execute a command in a running container.
