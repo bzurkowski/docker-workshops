@@ -14,15 +14,21 @@ Update the `apt` package index:
 $ sudo apt-get update
 ```
 
-Install additional packages required for Docker installation:
+Install additional packages required for Docker installation and further workshop exercises:
 
 ```bash
 $ sudo apt-get install \
     apt-transport-https \
     ca-certificates \
-    curl \
     gnupg-agent \
-    software-properties-common
+    software-properties-common \
+    curl \
+    wget \
+    vim \
+    git-core \
+    htop \
+    tmux \
+    redis-tools
 ```
 
 Add Docker’s official GPG key
@@ -105,7 +111,9 @@ Current user is lacking permissions. Add current user to `docker` group:
 sudo usermod -aG docker $USER
 ```
 
-Try to run a Docker command without `sudo`:
+**Restart your VM.**
+
+Log in, and try to run a Docker command without `sudo`:
 
 ```bash
 $ docker run --rm hello-world

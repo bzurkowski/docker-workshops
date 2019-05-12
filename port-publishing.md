@@ -63,7 +63,7 @@ $ curl http://172.18.0.2:80
 
 The communication succeeds and Nginx server responds with a welcome message. This is because the communication happend in the scope of the internal Docker network.
 
-Subsequently, let's try to communicate with the server via loopback address which is an address from outside of the Docker network:
+Subsequently, let's try to communicate with the server via loopback address which is an address from the outside of the Docker network:
 
 ```bash
 $ curl http://localhost:80
@@ -115,8 +115,8 @@ This time the communication succeed. You may also try to access Nginx via the we
 
 ## Exercises
 
-1. Run a `Redis` container with port `6379` exposed to the *outside* - map host port `6000` to container port `6379`.
-2. Connect to containerized Redis instance from the Docker host and try to set several keys:
+1. Run a `Redis` container with port `6379` exposed to the outside - map port `6000` of the Docker host to port `6379` of the container.
+2. Connect to containerized Redis instance via loopback address and try to set several keys:
 
   ```bash
   $ redis-cli -h localhost -p 6000
