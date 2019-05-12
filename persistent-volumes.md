@@ -10,7 +10,7 @@ In this chapter you will learn:
 
 ## Walkthrough
 
-By default all files created inside a container are stored on an ephemeral filesystem layer. This layer is tightly coupled with the container lifecycle. After the container is removed its associated writable layer is also removed. As a result, all data populated by the container is lost.
+By default all files created inside a container are stored on an ephemeral filesystem layer. This layer is tightly coupled with the container lifecycle. After the container is removed its associated writable layer is also removed. Consequently, all data populated by the container is lost.
 
 ### Task 1: Why do we need persistent storage volumes
 
@@ -53,7 +53,7 @@ $ docker exec novoltest ls -l testfile.txt
 
 The file is still present in the container.
 
-Now, let's remove the container and start a new one:
+Now, let's remove the container and start a new one from the same image:
 
 ```bash
 $ docker stop novoltest && docker rm novoltest

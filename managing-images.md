@@ -13,17 +13,15 @@ In this chapter you will learn:
 
 ## Walkthrough
 
-Docker image is a lightweight and standalone **object containing a packed application** code, along with its dependencies, configuration, and execution environment - e.g. environment variables or a command starting the application process.
+Docker image is a lightweight and standalone **object containing packed application** code, along with its dependencies, configuration, environment variables, and a command starting the application process.
 
 It is type of a **filesystem** that has a **layered structure**. Each increment of files in the image creates a new layer arranged on top of the previous ones. For example, the application code and installation of a library can be two separate layers. This improves the image building process and reduces disk space usage. Most layers are cached and can be reused by other images.
 
 ![](/assets/image-layers.png)
 
-When a container is started, the filesystem stored in the image is mounted to the root directory of the container process.
+When a container is started, the filesystem stored in the image is mounted to the root directory of the container process (under '/' path). Layers of the original image are always read-only. New containers create a thin writable layer (*container layer*) on top of the image layers and use *Copy on Write* technique to add/modify image files:
 
 ![](/assets/image-multi-containers.png)
-
-Layers of the original image are always read-only. New containers create a thin writable layer (*container layer*) on top of the image layers and use *Copy on Write* technique to add/modify image files.
 
 ### Task 1: Listing images
 
@@ -62,7 +60,7 @@ REPOSITORY          TAG                 IMAGE ID            CREATED             
 
 Now, let's say that we are developing an application consiting of three components: a Ruby on Rails website, a Nginx web-server running in front, and a Redis database for storing user data.
 
-We may want to ensure that Docker images required for running these components are available in the public registry - [Docker Hub](https://hub.docker.com/).
+We may want to ensure that Docker images required for running those components are available in the public registry - [Docker Hub](https://hub.docker.com/).
 
 Check if there is an image for Redis:
 
@@ -85,7 +83,7 @@ Docker images can be also found in the [Docker Hub web browser](https://hub.dock
 
 ### Task 4: Pulling images
 
-In order to download images found in the registry there is `docker pull` command. It has the following syntax:
+For downloading images found in the registry there is the `docker pull` command. It has the following syntax:
 
 ```bash
 $ docker pull NAME[:TAG]

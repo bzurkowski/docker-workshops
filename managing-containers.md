@@ -15,7 +15,7 @@ In this chapter you will learn:
 
 Container is an isolated **PROCESS** in user space sharing OS kernel with other containers (processes). Container management tools such as Docker leverage existing OS mechanisms such as *namespaces* and *cgroups* to **limit what a given process can see** and **how much resources a given process can use**. Moreover, they use *chroot* to replace the root filesystem of the process with the content of a container image.
 
-These mechanisms enable emulation of distinct OS environment for a process and limit the impact of that process on other processes to the bare minimum.
+These mechanisms enable emulation of distinct OS environments for a process and limit the impact of that process on other processes to the bare minimum.
 
 ![](/assets/containers-vs-vms.png)
 
@@ -141,16 +141,18 @@ In order to prevent immediate exit of shell process and stopping the container a
 
 Additionaly, we used `--rm` to tell Docker to automatically remove the container after its done with executing the session.
 
-After the container starts the Docker engine switches user context into the bash shell inside the container. Input and output streams are bound between the local session and the shell session in the container.
+After the container starts the Docker engine switches user context into the bash shell inside the container. It also binds input and output streams between the local session and the shell session in the container.
 
 Let's run several sample commands inside the container:
 
-* List files in the current directory:
+* List files in the root directory:
 
   ```bash
-  $ / # ls
+  $ / # ls -l /
   bin    dev    etc    home   lib    media  mnt    opt    proc   root   run    sbin   srv    sys    tmp    usr    var
   ```
+
+  This is the exact content of the Docker image, now mounted under `/`.
 
 * Check hostname:
 
@@ -159,7 +161,7 @@ Let's run several sample commands inside the container:
   5f676173f668
   ```
 
-  By default, hostname of a container is equal to its ID. What is the hostname of host OS?
+  By default, hostname of a container is equal to its ID. What is the hostname of your host OS?
 
 * Check information about operating system:
 
@@ -220,7 +222,7 @@ Try: sudo apt install <selected package>
 
 The `figlet` command is not present on the host, because it was installed only in the container.
 
-Ensure that the container has been automatically removed (`--rm` option):
+As the last step, ensure that the container has been automatically removed (`--rm` option):
 
 ```bash
 $ docker ps --all
