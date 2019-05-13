@@ -8,15 +8,6 @@ In this chapter you will learn:
 
 ## Walkthrough
 
-[Hot fix] Disable apt daily upgrade:
-
-```bash
-$ sudo systemctl stop apt-daily-upgrade
-$ sudo systemctl disable apt-daily-upgrade
-$ sudo systemctl stop apt-daily
-$ sudo systemctl disable apt-daily
-```
-
 Update the `apt` package index:
 
 ```bash
